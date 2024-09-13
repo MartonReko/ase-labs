@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hu.bme.mit.ase.shingler.logic.TokenizerTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-09-13T07:25:26" hostname="fedora" time="0.086">
+  <properties/>
+  <testcase name="tokenizerShouldRespectCharGranularity()" classname="hu.bme.mit.ase.shingler.logic.TokenizerTests" time="0.053"/>
+  <testcase name="tokenizerShouldRespectWordGranularity()" classname="hu.bme.mit.ase.shingler.logic.TokenizerTests" time="0.028"/>
+  <system-out><![CDATA[[INFO ] 2024-09-13 09:25:26.487 [Test worker] BaseTokenizer - Tokenizing document with word granularity = false
+[INFO ] 2024-09-13 09:25:26.503 [Test worker] BaseTokenizer - Tokenizing document with word granularity = true
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

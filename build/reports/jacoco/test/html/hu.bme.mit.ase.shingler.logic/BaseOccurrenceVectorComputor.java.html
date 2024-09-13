@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BaseOccurrenceVectorComputor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">shingler</a> &gt; <a href="index.source.html" class="el_package">hu.bme.mit.ase.shingler.logic</a> &gt; <span class="el_source">BaseOccurrenceVectorComputor.java</span></div><h1>BaseOccurrenceVectorComputor.java</h1><pre class="source lang-java linenums">package hu.bme.mit.ase.shingler.logic;
+
+import hu.bme.mit.ase.shingler.lib.OccurrenceVectorComputor;
+import hu.bme.mit.ase.shingler.lib.data.OccurrenceVector;
+import hu.bme.mit.ase.shingler.lib.data.Shingle;
+import hu.bme.mit.ase.shingler.lib.data.TokenVector;
+import hu.bme.mit.ase.shingler.lib.data.TokenizedDocument;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
+
+<span class="fc" id="L14">public class BaseOccurrenceVectorComputor implements OccurrenceVectorComputor {</span>
+
+<span class="fc" id="L16">    private static final Logger logger = LoggerFactory.getLogger(BaseOccurrenceVectorComputor.class);</span>
+
+    @Override
+    public OccurrenceVector calculateOccurrenceVector(TokenizedDocument document, int size) {
+<span class="fc" id="L20">        logger.info(&quot;Calculating occurrence vector ({}) with size={}&quot;, document, size);</span>
+
+<span class="fc" id="L22">        var shingles = new ArrayList&lt;Shingle&gt;();</span>
+
+<span class="fc bfc" id="L24" title="All 2 branches covered.">        for (TokenVector tokenVector : document) {</span>
+<span class="fc" id="L25">            collectShingles(shingles, tokenVector, size);</span>
+<span class="fc" id="L26">        }</span>
+
+<span class="fc" id="L28">        return computeOccurrences(shingles);</span>
+    }
+
+    private void collectShingles(List&lt;Shingle&gt; shingles, TokenVector vector, int s) {
+<span class="fc" id="L32">        int leftIndex = 0;</span>
+<span class="fc" id="L33">        int rightIndex = 0;</span>
+
+<span class="fc bfc" id="L35" title="All 4 branches covered.">        while (rightIndex &lt; s &amp;&amp; rightIndex &lt; vector.size()) {</span>
+<span class="fc" id="L36">            rightIndex++;</span>
+
+<span class="fc" id="L38">            shingles.add(new Shingle(vector.subList(leftIndex, rightIndex)));</span>
+        }
+
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        while (rightIndex &lt; vector.size()) {</span>
+<span class="fc" id="L42">            leftIndex++;</span>
+<span class="fc" id="L43">            rightIndex++;</span>
+<span class="fc" id="L44">            shingles.add(new Shingle(vector.subList(leftIndex, rightIndex)));</span>
+        }
+
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        while (leftIndex &lt; rightIndex - 1) {</span>
+<span class="fc" id="L48">            leftIndex++;</span>
+<span class="fc" id="L49">            shingles.add(new Shingle(vector.subList(leftIndex, rightIndex)));</span>
+        }
+<span class="fc" id="L51">    }</span>
+
+    private OccurrenceVector computeOccurrences(List&lt;Shingle&gt; shingles) {
+<span class="fc" id="L54">        var occurrenceVector = new OccurrenceVector();</span>
+
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        for (var shingle : shingles) {</span>
+<span class="fc" id="L57">            occurrenceVector.merge(shingle, 1, Integer::sum);</span>
+<span class="fc" id="L58">        }</span>
+
+<span class="fc" id="L60">        return occurrenceVector;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

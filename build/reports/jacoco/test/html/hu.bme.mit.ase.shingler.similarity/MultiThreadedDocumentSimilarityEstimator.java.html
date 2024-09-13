@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MultiThreadedDocumentSimilarityEstimator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">shingler</a> &gt; <a href="index.source.html" class="el_package">hu.bme.mit.ase.shingler.similarity</a> &gt; <span class="el_source">MultiThreadedDocumentSimilarityEstimator.java</span></div><h1>MultiThreadedDocumentSimilarityEstimator.java</h1><pre class="source lang-java linenums">package hu.bme.mit.ase.shingler.similarity;
+
+import hu.bme.mit.ase.shingler.lib.CosineSimilarityComputor;
+import hu.bme.mit.ase.shingler.lib.DocumentSimilarityEstimator;
+import hu.bme.mit.ase.shingler.lib.OccurrenceVectorComputor;
+import hu.bme.mit.ase.shingler.lib.Tokenizer;
+import hu.bme.mit.ase.shingler.lib.VectorMultiplier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+
+public class MultiThreadedDocumentSimilarityEstimator implements DocumentSimilarityEstimator {
+
+<span class="fc" id="L16">    private static final Logger logger = LoggerFactory.getLogger(MultiThreadedDocumentSimilarityEstimator.class);</span>
+
+    private final Tokenizer tokenizer;
+    private final OccurrenceVectorComputor occurrenceVectorComputor ;
+    private final VectorMultiplier vectorMultiplier;
+    private final CosineSimilarityComputor cosineSimilarityComputor;
+
+<span class="fc" id="L23">    public MultiThreadedDocumentSimilarityEstimator(Tokenizer tokenizer, OccurrenceVectorComputor occurrenceVectorComputor, VectorMultiplier vectorMultiplier, CosineSimilarityComputor cosineSimilarityComputor) {</span>
+<span class="fc" id="L24">        this.tokenizer = tokenizer;</span>
+<span class="fc" id="L25">        this.occurrenceVectorComputor = occurrenceVectorComputor;</span>
+<span class="fc" id="L26">        this.vectorMultiplier = vectorMultiplier;</span>
+<span class="fc" id="L27">        this.cosineSimilarityComputor = cosineSimilarityComputor;</span>
+<span class="fc" id="L28">    }</span>
+
+    public double computeSimilarityMultiThreaded(String document1, String document2, int shingleSize, boolean wordGranularity) throws ExecutionException, InterruptedException {
+<span class="fc" id="L31">        logger.info(&quot;Starting input tokenization&quot;);</span>
+
+        // Tokenize documents in parallel
+<span class="fc" id="L34">        var futureTokenizedDoc1 = CompletableFuture.supplyAsync(() -&gt;</span>
+<span class="fc" id="L35">                tokenizer.tokenize(document1, wordGranularity)</span>
+        );
+
+<span class="fc" id="L38">        var futureTokenizedDoc2 = CompletableFuture.supplyAsync(() -&gt;</span>
+<span class="fc" id="L39">                tokenizer.tokenize(document2, wordGranularity)</span>
+        );
+
+        // Wait for tokenization to complete
+<span class="fc" id="L43">        var tokenizedDocument1 = futureTokenizedDoc1.get();</span>
+<span class="fc" id="L44">        var tokenizedDocument2 = futureTokenizedDoc2.get();</span>
+
+<span class="fc" id="L46">        logger.info(&quot;Starting occurrence vector calculation&quot;);</span>
+
+        // Calculate occurrence vectors in parallel
+<span class="fc" id="L49">        var futureA = CompletableFuture.supplyAsync(() -&gt;</span>
+<span class="fc" id="L50">                occurrenceVectorComputor.calculateOccurrenceVector(tokenizedDocument1, shingleSize)</span>
+        );
+
+<span class="fc" id="L53">        var futureB = CompletableFuture.supplyAsync(() -&gt;</span>
+<span class="fc" id="L54">                occurrenceVectorComputor.calculateOccurrenceVector(tokenizedDocument2, shingleSize)</span>
+        );
+
+        // Wait for occurrence vector calculations
+<span class="fc" id="L58">        var a = futureA.get();</span>
+<span class="fc" id="L59">        var b = futureB.get();</span>
+
+<span class="fc" id="L61">        logger.info(&quot;Starting vector multiplications&quot;);</span>
+
+        // Compute scalar products in parallel
+<span class="fc" id="L64">        var futureAA = CompletableFuture.supplyAsync(() -&gt;</span>
+<span class="fc" id="L65">                vectorMultiplier.computeScalarProduct(a, a)</span>
+        );
+
+<span class="fc" id="L68">        var futureAB = CompletableFuture.supplyAsync(() -&gt;</span>
+<span class="fc" id="L69">                vectorMultiplier.computeScalarProduct(a, b)</span>
+        );
+
+<span class="fc" id="L72">        var futureBB = CompletableFuture.supplyAsync(() -&gt;</span>
+<span class="fc" id="L73">                vectorMultiplier.computeScalarProduct(b, b)</span>
+        );
+
+        // Wait for scalar products to complete
+<span class="fc" id="L77">        var aa = futureAA.get();</span>
+<span class="fc" id="L78">        var ab = futureAB.get();</span>
+<span class="fc" id="L79">        var bb = futureBB.get();</span>
+
+<span class="fc" id="L81">        logger.info(&quot;Computing cosine similarity&quot;);</span>
+
+<span class="fc" id="L83">        var futureSimilarity = CompletableFuture.supplyAsync(() -&gt;</span>
+<span class="fc" id="L84">                cosineSimilarityComputor.computeCosineSimilarity(aa, ab, bb)</span>
+        );
+
+        // Wait for result
+<span class="fc" id="L88">        return futureSimilarity.get();</span>
+    }
+
+    @Override
+    public double computeSimilarity(String document1, String document2, int shingleSize, boolean wordGranularity) {
+        // Box all exceptions into RuntimeException type
+        try {
+<span class="fc" id="L95">            return computeSimilarityMultiThreaded(document1, document2, shingleSize, wordGranularity);</span>
+<span class="nc" id="L96">        } catch (Throwable e) {</span>
+<span class="nc" id="L97">            throw new RuntimeException(e);</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

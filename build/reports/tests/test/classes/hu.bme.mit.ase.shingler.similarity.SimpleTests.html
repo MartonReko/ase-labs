@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - SimpleTests</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>SimpleTests</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/hu.bme.mit.ase.shingler.similarity.html">hu.bme.mit.ase.shingler.similarity</a> &gt; SimpleTests</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.231s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">fruitTest()</td>
+<td class="success">0.231s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>[INFO ] 2024-09-13 09:25:29.610 [Test worker] SingleThreadedDocumentSimilarityEstimator - Tokenizing input
+[INFO ] 2024-09-13 09:25:29.636 [Test worker] BaseTokenizer - Tokenizing document with word granularity = false
+[INFO ] 2024-09-13 09:25:29.637 [Test worker] BaseTokenizer - Tokenizing document with word granularity = false
+[INFO ] 2024-09-13 09:25:29.637 [Test worker] SingleThreadedDocumentSimilarityEstimator - Calculating occurrence vectors
+[INFO ] 2024-09-13 09:25:29.637 [Test worker] BaseOccurrenceVectorComputor - Calculating occurrence vector ([[b, a, n, a, n, a]]) with size=2
+[INFO ] 2024-09-13 09:25:29.654 [Test worker] BaseOccurrenceVectorComputor - Calculating occurrence vector ([[a, n, a, n, a, s]]) with size=2
+[INFO ] 2024-09-13 09:25:29.658 [Test worker] SingleThreadedDocumentSimilarityEstimator - Calculating scalar products
+[INFO ] 2024-09-13 09:25:29.665 [Test worker] BaseVectorMultiplier - Computing scalar product of u={[a]=1, [b, a]=1, [b]=1, [n, a]=2, [a, n]=2} * v={[a]=1, [b, a]=1, [b]=1, [n, a]=2, [a, n]=2}
+[INFO ] 2024-09-13 09:25:29.665 [Test worker] BaseVectorMultiplier - Computing scalar product of u={[a]=1, [b, a]=1, [b]=1, [n, a]=2, [a, n]=2} * v={[a]=1, [s]=1, [a, s]=1, [n, a]=2, [a, n]=2}
+[INFO ] 2024-09-13 09:25:29.665 [Test worker] BaseVectorMultiplier - Computing scalar product of u={[a]=1, [s]=1, [a, s]=1, [n, a]=2, [a, n]=2} * v={[a]=1, [s]=1, [a, s]=1, [n, a]=2, [a, n]=2}
+[INFO ] 2024-09-13 09:25:29.665 [Test worker] SingleThreadedDocumentSimilarityEstimator - Computing cosine similarity
+[INFO ] 2024-09-13 09:25:29.666 [Test worker] BaseCosineSimilarityComputor - Computing cosine similarity of aa=11.0, ab=9.0, bb=11.0
+[INFO ] 2024-09-13 09:25:29.666 [Test worker] MultiThreadedDocumentSimilarityEstimator - Starting input tokenization
+[INFO ] 2024-09-13 09:25:29.671 [Thread-148] BaseTokenizer - Tokenizing document with word granularity = false
+[INFO ] 2024-09-13 09:25:29.685 [Thread-149] BaseTokenizer - Tokenizing document with word granularity = false
+[INFO ] 2024-09-13 09:25:29.694 [Test worker] MultiThreadedDocumentSimilarityEstimator - Starting occurrence vector calculation
+[INFO ] 2024-09-13 09:25:29.713 [Thread-151] BaseOccurrenceVectorComputor - Calculating occurrence vector ([[a, n, a, n, a, s]]) with size=2
+[INFO ] 2024-09-13 09:25:29.702 [Thread-150] BaseOccurrenceVectorComputor - Calculating occurrence vector ([[b, a, n, a, n, a]]) with size=2
+[INFO ] 2024-09-13 09:25:29.723 [Test worker] MultiThreadedDocumentSimilarityEstimator - Starting vector multiplications
+[INFO ] 2024-09-13 09:25:29.753 [Thread-152] BaseVectorMultiplier - Computing scalar product of u={[a]=1, [b, a]=1, [b]=1, [n, a]=2, [a, n]=2} * v={[a]=1, [b, a]=1, [b]=1, [n, a]=2, [a, n]=2}
+[INFO ] 2024-09-13 09:25:29.754 [Thread-153] BaseVectorMultiplier - Computing scalar product of u={[a]=1, [b, a]=1, [b]=1, [n, a]=2, [a, n]=2} * v={[a]=1, [s]=1, [a, s]=1, [n, a]=2, [a, n]=2}
+[INFO ] 2024-09-13 09:25:29.758 [Thread-154] BaseVectorMultiplier - Computing scalar product of u={[a]=1, [s]=1, [a, s]=1, [n, a]=2, [a, n]=2} * v={[a]=1, [s]=1, [a, s]=1, [n, a]=2, [a, n]=2}
+[INFO ] 2024-09-13 09:25:29.758 [Test worker] MultiThreadedDocumentSimilarityEstimator - Computing cosine similarity
+[INFO ] 2024-09-13 09:25:29.760 [Thread-155] BaseCosineSimilarityComputor - Computing cosine similarity of aa=11.0, ab=9.0, bb=11.0
+[INFO ] 2024-09-13 09:25:29.762 [Test worker] SingleThreadedDocumentSimilarityEstimator - Tokenizing input
+[INFO ] 2024-09-13 09:25:29.763 [Test worker] BaseTokenizer - Tokenizing document with word granularity = false
+[INFO ] 2024-09-13 09:25:29.763 [Test worker] BaseTokenizer - Tokenizing document with word granularity = false
+[INFO ] 2024-09-13 09:25:29.763 [Test worker] SingleThreadedDocumentSimilarityEstimator - Calculating occurrence vectors
+[INFO ] 2024-09-13 09:25:29.763 [Test worker] BaseOccurrenceVectorComputor - Calculating occurrence vector ([[b, a, n, a, n, a]]) with size=2
+[INFO ] 2024-09-13 09:25:29.763 [Test worker] BaseOccurrenceVectorComputor - Calculating occurrence vector ([[a, n, a, n, a, s]]) with size=2
+[INFO ] 2024-09-13 09:25:29.763 [Test worker] SingleThreadedDocumentSimilarityEstimator - Calculating scalar products
+[INFO ] 2024-09-13 09:25:29.763 [Test worker] BaseVectorMultiplier - Computing scalar product of u={[a]=1, [b, a]=1, [b]=1, [n, a]=2, [a, n]=2} * v={[a]=1, [b, a]=1, [b]=1, [n, a]=2, [a, n]=2}
+[INFO ] 2024-09-13 09:25:29.763 [Test worker] BaseVectorMultiplier - Computing scalar product of u={[a]=1, [b, a]=1, [b]=1, [n, a]=2, [a, n]=2} * v={[a]=1, [s]=1, [a, s]=1, [n, a]=2, [a, n]=2}
+[INFO ] 2024-09-13 09:25:29.764 [Test worker] BaseVectorMultiplier - Computing scalar product of u={[a]=1, [s]=1, [a, s]=1, [n, a]=2, [a, n]=2} * v={[a]=1, [s]=1, [a, s]=1, [n, a]=2, [a, n]=2}
+[INFO ] 2024-09-13 09:25:29.764 [Test worker] SingleThreadedDocumentSimilarityEstimator - Computing cosine similarity
+[INFO ] 2024-09-13 09:25:29.764 [Test worker] BaseCosineSimilarityComputor - Computing cosine similarity of aa=11.0, ab=9.0, bb=11.0
+[INFO ] 2024-09-13 09:25:29.764 [Test worker] MultiThreadedDocumentSimilarityEstimator - Starting input tokenization
+[INFO ] 2024-09-13 09:25:29.781 [Thread-156] BaseTokenizer - Tokenizing document with word granularity = false
+[INFO ] 2024-09-13 09:25:29.785 [Thread-157] BaseTokenizer - Tokenizing document with word granularity = false
+[INFO ] 2024-09-13 09:25:29.786 [Test worker] MultiThreadedDocumentSimilarityEstimator - Starting occurrence vector calculation
+[INFO ] 2024-09-13 09:25:29.791 [Thread-158] BaseOccurrenceVectorComputor - Calculating occurrence vector ([[b, a, n, a, n, a]]) with size=2
+[INFO ] 2024-09-13 09:25:29.794 [Thread-159] BaseOccurrenceVectorComputor - Calculating occurrence vector ([[a, n, a, n, a, s]]) with size=2
+[INFO ] 2024-09-13 09:25:29.799 [Test worker] MultiThreadedDocumentSimilarityEstimator - Starting vector multiplications
+[INFO ] 2024-09-13 09:25:29.810 [Thread-160] BaseVectorMultiplier - Computing scalar product of u={[a]=1, [b, a]=1, [b]=1, [n, a]=2, [a, n]=2} * v={[a]=1, [b, a]=1, [b]=1, [n, a]=2, [a, n]=2}
+[INFO ] 2024-09-13 09:25:29.817 [Thread-161] BaseVectorMultiplier - Computing scalar product of u={[a]=1, [b, a]=1, [b]=1, [n, a]=2, [a, n]=2} * v={[a]=1, [s]=1, [a, s]=1, [n, a]=2, [a, n]=2}
+[INFO ] 2024-09-13 09:25:29.822 [Thread-162] BaseVectorMultiplier - Computing scalar product of u={[a]=1, [s]=1, [a, s]=1, [n, a]=2, [a, n]=2} * v={[a]=1, [s]=1, [a, s]=1, [n, a]=2, [a, n]=2}
+[INFO ] 2024-09-13 09:25:29.824 [Test worker] MultiThreadedDocumentSimilarityEstimator - Computing cosine similarity
+[INFO ] 2024-09-13 09:25:29.830 [Thread-163] BaseCosineSimilarityComputor - Computing cosine similarity of aa=11.0, ab=9.0, bb=11.0
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 8.10.1</a> at Sep 13, 2024, 9:25:35 AM</p>
+</div>
+</div>
+</body>
+</html>

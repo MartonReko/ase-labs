@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hu.bme.mit.ase.shingler.diversity.DiversityTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2024-09-13T07:25:23" hostname="fedora" time="2.585">
+  <properties/>
+  <testcase name="simpleTest()" classname="hu.bme.mit.ase.shingler.diversity.DiversityTest" time="2.476"/>
+  <testcase name="singleWordTest()" classname="hu.bme.mit.ase.shingler.diversity.DiversityTest" time="0.012"/>
+  <testcase name="singleCharacterTest()" classname="hu.bme.mit.ase.shingler.diversity.DiversityTest" time="0.014"/>
+  <testcase name="sameCharactersShouldBeEqual()" classname="hu.bme.mit.ase.shingler.diversity.DiversityTest" time="0.008"/>
+  <testcase name="differentWordsShouldNotBeEqual()" classname="hu.bme.mit.ase.shingler.diversity.DiversityTest" time="0.012"/>
+  <testcase name="simpleWordTest()" classname="hu.bme.mit.ase.shingler.diversity.DiversityTest" time="0.014"/>
+  <testcase name="differentCharactersShouldNotBeEqual()" classname="hu.bme.mit.ase.shingler.diversity.DiversityTest" time="0.017"/>
+  <system-out><![CDATA[[INFO ] 2024-09-13 09:25:26.061 [Test worker] SimpleDocumentDiversityComputor - Computing diversity list
+[INFO ] 2024-09-13 09:25:26.140 [Test worker] BaseTokenizer - Tokenizing document with word granularity = false
+[INFO ] 2024-09-13 09:25:26.171 [Test worker] BaseDiversityListComputor - Computing diversity of document [[t, h, i, s], [b, a, l, l], [h, e, r, e], [i, s], [b, e, t, t, e, r]]
+[INFO ] 2024-09-13 09:25:26.229 [Test worker] SimpleDocumentDiversityComputor - Computing diversity list
+[INFO ] 2024-09-13 09:25:26.236 [Test worker] BaseTokenizer - Tokenizing document with word granularity = true
+[INFO ] 2024-09-13 09:25:26.240 [Test worker] BaseDiversityListComputor - Computing diversity of document [[a]]
+[INFO ] 2024-09-13 09:25:26.252 [Test worker] SimpleDocumentDiversityComputor - Computing diversity list
+[INFO ] 2024-09-13 09:25:26.256 [Test worker] BaseTokenizer - Tokenizing document with word granularity = false
+[INFO ] 2024-09-13 09:25:26.257 [Test worker] BaseDiversityListComputor - Computing diversity of document [[a]]
+[INFO ] 2024-09-13 09:25:26.268 [Test worker] SimpleDocumentDiversityComputor - Computing diversity list
+[INFO ] 2024-09-13 09:25:26.271 [Test worker] BaseTokenizer - Tokenizing document with word granularity = false
+[INFO ] 2024-09-13 09:25:26.272 [Test worker] BaseDiversityListComputor - Computing diversity of document [[a, a], [a, a, a], [a], [a, a, a, a, a]]
+[INFO ] 2024-09-13 09:25:26.282 [Test worker] SimpleDocumentDiversityComputor - Computing diversity list
+[INFO ] 2024-09-13 09:25:26.285 [Test worker] BaseTokenizer - Tokenizing document with word granularity = true
+[INFO ] 2024-09-13 09:25:26.288 [Test worker] BaseDiversityListComputor - Computing diversity of document [[ab, abc, a, abcdef]]
+[INFO ] 2024-09-13 09:25:26.297 [Test worker] SimpleDocumentDiversityComputor - Computing diversity list
+[INFO ] 2024-09-13 09:25:26.298 [Test worker] BaseTokenizer - Tokenizing document with word granularity = true
+[INFO ] 2024-09-13 09:25:26.300 [Test worker] BaseDiversityListComputor - Computing diversity of document [[this, ball, here, is, better]]
+[INFO ] 2024-09-13 09:25:26.319 [Test worker] SimpleDocumentDiversityComputor - Computing diversity list
+[INFO ] 2024-09-13 09:25:26.320 [Test worker] BaseTokenizer - Tokenizing document with word granularity = false
+[INFO ] 2024-09-13 09:25:26.325 [Test worker] BaseDiversityListComputor - Computing diversity of document [[a, b], [a, b, c], [a], [a, b, c, d, e, f]]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
