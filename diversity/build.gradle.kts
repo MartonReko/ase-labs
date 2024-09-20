@@ -20,8 +20,9 @@ val junitVersion = "5.10.0"
 dependencies {
     implementation(project("*:lib"))
 
-    //implementation("org.slf4j:slf4j-api:$slf4jVersion")
-    //implementation("info.picocli:picocli:$picoCliVersion")
+
+     implementation("org.slf4j:slf4j-api:$slf4jVersion")
+    implementation("info.picocli:picocli:$picoCliVersion")
 
     runtimeOnly("org.apache.logging.log4j:log4j-slf4j-impl:$log4jVersion")
 
