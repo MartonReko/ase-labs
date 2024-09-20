@@ -1,5 +1,5 @@
 plugins {
-    id("hu.bme.mit.ase.shingler.gradle.java")
+    id("hu.bme.mit.ase.shingler.gradle.application")
 
 }
 
