@@ -7,8 +7,6 @@
     <list default="true" id="8e4ea025-5c35-450d-86fc-7a39aa3af072" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/diversity/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/diversity/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/similarity/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/similarity/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
